@@ -10,8 +10,7 @@ nn.clone = function (o) {
 }
 
 // 函數 f 對變數 k 的偏微分: df(p) / dk
-nn.df = function (f, p, k) {
-  let h = nn.step
+nn.df = function (f, p, k, h=nn.step) {
   let p1 = nn.clone(p)
   p1[k] += h
   return (f(p1) - f(p)) / h
