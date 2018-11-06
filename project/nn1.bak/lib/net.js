@@ -1,3 +1,4 @@
+const F = require('./function')
 const Node = require('./node')
 const Gate = require('./gate')
 
@@ -5,10 +6,21 @@ module.exports = class Net {
 
   constructor () {
     this.gates = []
+    this.i  = {}
   }
 
-  variable (v, g) {
-    return new Node(v, g)
+  inputs (p) {
+    for (let k in p) {
+      this.i[k] = new Node(p[k])
+    }
+    return this.i
+  }
+
+  outputs (p) {
+    for (let k in p) {
+      this.o[k] = p[k]
+    }
+    return this.o
   }
 
   op (x, y, f, gfx, gfy) {
@@ -19,19 +31,20 @@ module.exports = class Net {
     return o
   }
 
-  add (x, y) { return this.op(x, y, (x,y)=>x+y, (x,y)=>1) }
-  mul (x, y) { return this.op(x, y, (x,y)=>x*y, (x,y)=>y, (x,y)=>x) }
+  add (x, y) { return this.op(x, y, F.add, F.gadd) }
 
-  forward() { // 正向傳遞計算結果
+  mul (x, y) { return this.op(x, y, F.mul, F.gmul, F.gmuly) }
+
+  forward() {
     for (let gate of this.gates) {
       gate.forward()
     }
     return this.o
   }
 
-  backward() { // 反向傳遞計算梯度
-    this.o.g = 1 // 設定輸出節點 o 的梯度為 1
-    for (let i=this.gates.length-1; i>=0; i--) { // 反向傳遞計算每個節點 Node 的梯度 g
+  backward() {
+    this.o.g = 1
+    for (let i=this.gates.length-1; i>=0; i--) {
       let gate = this.gates[i]
       gate.backward()
     }

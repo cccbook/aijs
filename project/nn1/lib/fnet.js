@@ -31,4 +31,7 @@ module.exports = class FNet {
     return this.getGrads()
   }
   
+  dump() {
+    return this.net.dump()
+  }
 }

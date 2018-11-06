@@ -9,4 +9,4 @@ let o  = net.add(x2, y2)
 
 net.watch({x,y,x2,y2,o})
 
-const fnet = module.exports = new nn.FNet(net, {x:x, y:y})
+module.exports = new nn.FNet(net, {x:x, y:y})

@@ -1,6 +1,10 @@
+const F = require('./function')
+const N = require('./node')
+
 module.exports = class Gate {
   constructor(o, x, y, f, gfx, gfy) {
     this.p = {o:o, x:x, y:y, f:f, gfx:gfx, gfy:gfy||gfx}
+    // G.gates.push(this)
   }
 
   forward() {
