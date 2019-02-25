@@ -61,16 +61,21 @@ Solution.init = function () {
 }
 
 Solution.prototype.neighbor = function() {    // 單變數解答的鄰居函數。
+  var i, j, t
   let fills = this.v.slice(0)
-  if (randInt(0, 2) === 0) { // 任選一個改變 
-    let i = randSlot()
-    fills[i] = randCourse()
-  } else { // 任選兩個交換
-    let i = randSlot()
-    let j = randSlot()
-    let t = fills[i]
-    fills[i] = fills[j]
-    fills[j] = t
+  let choose = randInt(0, 2)
+  switch (choose) {
+    case 0: // 任選一個改變 
+      i = randSlot()
+      fills[i] = randCourse()
+      break
+    case 1: // 任選兩個交換
+      i = randSlot()
+      j = randSlot()
+      t = fills[i]
+      fills[i] = fills[j]
+      fills[j] = t
+      break
   }
   return new Solution(fills)                  // 建立新解答並傳回。
 }
@@ -83,13 +88,13 @@ Solution.prototype.energy = function() {      // 能量函數
   for (let si=0; si<slots.length; si++) {
     courseCounts[fills[si]] ++
     if (si < slots.length-1 && fills[si] == fills[si+1] /*連續上課:好*/ && si%7 != 6 /*隔天:不好*/ && si%7 != 3 /*跨越中午:不好*/)
-      score -= 0.1
-    if (si % 7 == 0 && fills[si] != 0) /* 早上 8:00 不好*/
+      score -= 0.1 /* 連續上課:好 -- 能量降低 */
+    if (si % 7 == 0 && fills[si] != 0) /* 早上 8:00: 不好 (能量提高)*/
       score += 0.1
   }
   for (let ci=0; ci<courses.length; ci++) {
     if (courses[ci].hours >= 0)
-      score = score + Math.abs(courseCounts[ci]-courses[ci].hours)
+      score = score + Math.abs(courseCounts[ci]-courses[ci].hours) // 課程總時數不對: 不好 (能量提高)
   }
   return score
 }
@@ -98,7 +103,6 @@ Solution.prototype.toString = function() {    // 將解答轉為字串，以供�
   let outs = [], fills = this.v
   for (let i=0; i<slots.length; i++) {
     let c = courses[fills[i]]
-    // console.log('i=%d fills[i]=%d c=%j', i, fills[i], c)
     if (i%7==0) outs.push('\n')
     outs.push(slots[i] + ':' + c.name)
   }
