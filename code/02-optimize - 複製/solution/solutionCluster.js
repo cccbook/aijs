@@ -39,61 +39,57 @@ function P(d, s) {
   return R.dnorm(s, d.mu, d.sd)
 }
 
+Solution.init = function (len) {
+  let dists = []
+  for (let i=0; i<len; i++) {
+    dists[i] = { mu: randInt(-5, 5), sd: randInt(1, 5) }
+  }
+  return dists
+}
+
 function clone(src) {
   return JSON.parse(JSON.stringify(src));
 }
 
-class SolutionCluster extends Solution {
-  // constructor(v) { super(v) }
-
-  static init(len) {
-    let dists = []
-    for (let i=0; i<len; i++) {
-      dists[i] = { mu: randInt(-5, 5), sd: randInt(1, 5) }
-    }
-    return dists
+Solution.prototype.neighbor = function() {    // 單變數解答的鄰居函數。
+  // let dists = this.v.slice()
+  let dists = clone(this.v)
+  let step = this.step * (Math.random() - 0.5)
+  let di = randInt(0, dists.length)
+  let attr = randInt(0, 2)
+  switch (attr) {
+    case 0:
+      dists[di].mu += step
+      break
+    case 1:
+      dists[di].sd += step
+      break
   }
-
-  neighbor() {    // 單變數解答的鄰居函數。
-    // let dists = this.v.slice()
-    let dists = clone(this.v)
-    let step = this.step * (Math.random() - 0.5)
-    let di = randInt(0, dists.length)
-    let attr = randInt(0, 2)
-    switch (attr) {
-      case 0:
-        dists[di].mu += step
-        break
-      case 1:
-        dists[di].sd += step
-        break
-    }
-    return new SolutionCluster(dists)
-  }
-
-  energy() {      // 能量函數
-    let score = 0
-    let dists = this.v
-    for (let s of samples) {
-      let pmax = 0.000001
-      for (let d of dists) {
-        let p = P(d, s)
-        // console.log('P(%j,%d)=%d', d, s, p)
-        if (p > pmax) {
-          pmax = p
-        }
-        score += 0.1 * Math.log(p)
-      }
-      let entropy = Math.log(pmax)
-      score += entropy
-      // console.log('pmax=%d entropy=%d', pmax, entropy)
-    }
-    return -1 * score
-  }
-  
-  toString() {    // 將解答轉為字串，以供印出觀察。
-    return "energy(" + JSON.stringify(this.v) + ")="+this.energy().toFixed(9);
-  }
+  return new Solution(dists)
 }
 
-module.exports = SolutionCluster  // 將解答類別匯出。
+Solution.prototype.energy = function() {      // 能量函數
+  let score = 0
+  let dists = this.v
+  for (let s of samples) {
+    let pmax = 0.000001
+    for (let d of dists) {
+      let p = P(d, s)
+      // console.log('P(%j,%d)=%d', d, s, p)
+      if (p > pmax) {
+        pmax = p
+      }
+      score += 0.1 * Math.log(p)
+    }
+    let entropy = Math.log(pmax)
+    score += entropy
+    // console.log('pmax=%d entropy=%d', pmax, entropy)
+  }
+  return -1 * score
+}
+
+Solution.prototype.toString = function() {    // 將解答轉為字串，以供印出觀察。
+  return "energy(" + JSON.stringify(this.v) + ")="+this.energy().toFixed(9);
+}
+
+module.exports = Solution                     // 將解答類別匯出。

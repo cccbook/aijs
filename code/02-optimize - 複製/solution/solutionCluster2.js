@@ -27,16 +27,16 @@ function P(d, s) {
   return R.dnorm(s, d.mu, d.sd)
 }
 
-function clone(src) {
-  return JSON.parse(JSON.stringify(src));
-}
-
 Solution.init = function (len) {
   let dists = []
   for (let i=0; i<len; i++) {
     dists[i] = {x: { mu: randInt(-5, 5), sd: randInt(1, 5) }, y: { mu: randInt(-5, 5), sd: randInt(1, 5) } }
   }
   return dists
+}
+
+function clone(src) {
+  return JSON.parse(JSON.stringify(src));
 }
 
 Solution.prototype.neighbor = function() {    // 單變數解答的鄰居函數。
