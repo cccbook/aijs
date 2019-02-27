@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/ml5@0.1.1/dist/ml5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      async function main() {
+        const rnn = await ml5.charRNN('models/bolaño/')
+        const results = await rnn.generate({ seed: 'the meaning of pizza is' })
+        console.log('results=', results)
+      }
+
+      main()
+    </script>
+  </body>
+</html>

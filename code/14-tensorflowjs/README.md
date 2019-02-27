@@ -4,7 +4,11 @@
 
 試用： https://playground.tensorflow.org/
 
-範例來源： https://github.com/tensorflow/tfjs-examples
+範例來源： https://github.com/tensorflow/tfjs-examples (重要，愈來愈多了!)
+
+* 手寫辨識 -- https://storage.googleapis.com/tfjs-examples/mnist/dist/index.html
+* 物體辨識 -- https://storage.googleapis.com/tfjs-examples/mobilenet/dist/index.html
+
 
 討論區： https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs
 
@@ -29,6 +33,8 @@
 
 ## 文章
 
+* [Machine Learning in Node.js With TensorFlow.js](http://jamesthom.as/blog/2018/08/07/machine-learning-in-node-dot-js-with-tensorflow-dot-js/)
+* [Introduction to the TensorFlow.js core API](https://observablehq.com/@nsthorat/introduction-to-deeplearn-js)
 * [A Gentle Introduction to TensorFlow.js](https://medium.com/tensorflow/a-gentle-introduction-to-tensorflow-js-dba2e5257702)
 * [Getting started with TensorFlow.js — Simple AND Gate Implementation](https://www.linkedin.com/pulse/getting-started-tensorflowjs-simple-gate-sam-alsmadi)
   * https://github.com/lntelliMed/tensorflow-add-js/blob/master/src/App.js
