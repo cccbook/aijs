@@ -1,3 +1,4 @@
+// 點向量物件的處理函數， 例如 pv.add({x:3,y:2}, {x:1, y:1}) = {x:4, y:3}
 const pv = module.exports = {}
 
 pv.add = function (p1, p2) {

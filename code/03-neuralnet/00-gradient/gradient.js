@@ -1,18 +1,20 @@
 const step = 0.01
 
+// 克隆: 複製某物件
 function clone (o) {
   return {...o}
 }
 
+// 我們想找函數 f 的最低點
 function f (p) {
   let x = p.x, y = p.y
-  return -1 * (x * x + y * y)
+  return x * x + y * y
 }
 
 // 函數 f 對變數 k 的偏微分: df / dk
 function df (f, p, k) {
   let p1 = clone(p)
-  p1[k] -= step
+  p1[k] += step
   return (f(p1) - f(p)) / step
 }
 
@@ -25,6 +27,6 @@ function grad(f, p) {
   return gp
 }
 
-console.log('df(f(x:1,y:1), x) = ', df(f, {x:1, y:1}, 'x'))
+console.log('df(f(x:1,y:2), x) = ', df(f, {x:1, y:2}, 'x'))
 
-console.log('grad(f)=', grad(f, {x:1, y:1}))
+console.log('grad(f)=', grad(f, {x:1, y:2}))

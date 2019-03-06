@@ -1,4 +1,4 @@
-const pv = require('./lib/pvector')
+const pv = require('./pvector')
 const nn = module.exports = {
   pv: pv
 }

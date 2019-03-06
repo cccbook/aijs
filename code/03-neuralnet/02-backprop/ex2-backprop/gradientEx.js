@@ -1,4 +1,4 @@
-const fnet = require('./f')
+const fnet = require('./fnet1')
 
 console.log('forward: f()')
 

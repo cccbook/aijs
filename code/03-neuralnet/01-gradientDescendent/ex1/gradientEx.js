@@ -1,4 +1,4 @@
-const nn = require('../../nn')
+const nn = require('../nn')
 const f = require('./f')
 
 console.log('df(f(x:1,y:1), x) = ', nn.df(f, {x:1, y:1}, 'x'))

@@ -3,7 +3,7 @@
 用程式示範《梯度下降與反傳遞演算法》的原理！
 
 ```
-$ cd example/01-gradient
+$ cd ex1
 
 $ node .\gradientEx
 df(f(x:1,y:1), x) =  2.010000000000023

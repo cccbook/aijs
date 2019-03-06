@@ -3,10 +3,9 @@
 用程式示範《反傳遞演算法》的原理！
 
 ```
-$ cd example/02-backprop
+$ cd ex2-backprop
 
-$ node .\gradientEx
-PS D:\course\aijs\project\nn1\example\02-backprop> node .\gradientEx.js
+$ node .\gradientEx.js
 forward: f()
 { x: Node { v: 2, g: 0 },
   y: Node { v: 1, g: 0 },
@@ -20,7 +19,7 @@ backward: grad()
   y2: Node { v: 1, g: 1 },
   o: Node { v: 5, g: 1 } }
 
-$ node optimizeEx
+$ node backPropOptimizeEx
 
 p= {x:2.0000, y:1.0000} f(p)= 5
   gp= { x: 4, y: 1 }
