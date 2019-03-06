@@ -6,8 +6,6 @@
 
 f(x,y) => f(x+dx, y+dy)
 
-$$\sqrt{dx^2+dy^2} = df$$
-
 df 很小且固定 (例如 0.0001) 的情況下
 
 請問 dx , dy 應該各是多少，才能讓 f(x,y)-f(x+dx, y+dy) 最大！
