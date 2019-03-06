@@ -4,7 +4,8 @@
 
 ```
 $ cd ex1
-$ node gradientDescendent.js p= {x:1.0000, y:1.0000} f(p)= 2.0000000 norm= 8.0802000
+$ node gradientDescendent.js
+p= {x:1.0000, y:1.0000} f(p)= 2.0000000 norm= 8.0802000
 p= {x:0.9799, y:0.9799} f(p)= 1.9204080 norm= 7.7602241
 p= {x:0.9602, y:0.9602} f(p)= 1.8439758 norm= 7.4529192
 p= {x:0.9409, y:0.9409} f(p)= 1.7705779 norm= 7.1577836
