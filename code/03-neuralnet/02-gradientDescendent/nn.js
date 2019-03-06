@@ -29,9 +29,9 @@ nn.grad = function (f, p) {
 nn.optimize = function (f, p0) {
   let p = nn.clone(p0)
   while (true) {
-    console.log('p=', pv.str(p), 'f(p)=', f(p))
     let gp = nn.grad(f, p) // 計算梯度 gp
     let norm = pv.norm(gp) // norm = 梯度的長度 (步伐大小)
+    console.log('p=', pv.str(p), 'f(p)=', f(p).toFixed(7), 'norm=', norm.toFixed(7))
     if (norm < 0.00001) {  // 如果步伐已經很小了，那麼就停止吧！
       break
     }
