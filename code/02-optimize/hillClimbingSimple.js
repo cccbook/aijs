@@ -1,5 +1,5 @@
-function f (x) { return -1 * ( x * x + 3 * x + 5) }
-// function f(x) { return -1*Math.abs(x*x-4); }
+// function f (x) { return -1 * ( x * x + 3 * x + 5) }
+function f(x) { return -1*Math.abs(x*x-4); }
 
 var dx = 0.01
 
