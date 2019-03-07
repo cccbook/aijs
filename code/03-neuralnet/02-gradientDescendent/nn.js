@@ -26,7 +26,7 @@ nn.grad = function (f, p) {
 }
 
 // 使用梯度下降法尋找函數最低點
-nn.optimize = function (f, p0) {
+nn.gradientDescendent = function (f, p0) {
   let p = nn.clone(p0)
   while (true) {
     let gp = nn.grad(f, p) // 計算梯度 gp

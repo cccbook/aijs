@@ -1,6 +1,6 @@
 let h = 0.000001
 
-function f(x,y) { return 3*x*x + 2*y }
+function f(x,y) { return x*y }
 
 // 函數 f 在點 (x,y) 上的梯度, 數值微分算法
 function g1(f, x, y) {
@@ -9,17 +9,16 @@ function g1(f, x, y) {
   return [gx, gy]
 }
 
-// function f(x,y) { return 3*x*x + 2*y }
+// function f(x,y) { return x*y }
 
-function dfx(x,y) { return 6*x }
+function dfx(x,y) { return y }
 
-function dfy(x,y) { return 2 }
+function dfy(x,y) { return x }
 
 // 函數 f 在點 (x,y) 上的梯度, 自動微分算法
 function g2(f, x, y) {
   return [dfx(x, y), dfy(x,y)]
 }
-
 
 console.log('g1(f,3,2) = ', g1(f, 3, 2))
 console.log('g2(f,3,2) = ', g2(f, 3, 2))
