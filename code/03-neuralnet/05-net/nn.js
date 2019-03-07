@@ -17,8 +17,8 @@ class Gate {
 
   backward() {
     let {o,x,y,gfx,gfy} = this.p
-    x.g = gfx(o.v)
-    y.g = gfy(o.v)
+    x.g += gfx(x.v,y.v) * o.g
+    y.g += gfy(x.v,y.v) * o.g
   }
 }
 
@@ -49,7 +49,7 @@ class Net {
     return this.o
   }
 
-  backward() { // 反向傳遞計算梯度
+  backward() { // 反向傳遞計算梯度 
     this.o.g = 1 // 設定輸出節點 o 的梯度為 1
     for (let i=this.gates.length-1; i>=0; i--) { // 反向傳遞計算每個節點 Node 的梯度 g
       let gate = this.gates[i]

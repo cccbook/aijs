@@ -6,11 +6,12 @@ module.exports = class Gate {
   forward() {
     let {o, x, y, f} = this.p
     o.v = f(x.v, y.v)
+    o.g = x.g = y.g = 0
   }
 
   backward() {
     let {o,x,y,gfx,gfy} = this.p
-    x.g = gfx(o.v)
-    y.g = gfy(o.v)
+    x.g += gfx(x.v, y.v) * o.g
+    y.g += gfy(x.v, y.v) * o.g
   }
 }

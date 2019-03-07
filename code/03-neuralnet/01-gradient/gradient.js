@@ -27,6 +27,6 @@ function grad(f, p) {
   return gp
 }
 
-console.log('df(f(x:1,y:2), x) = ', df(f, {x:1, y:2}, 'x'))
+console.log('df(f(x:1,y:2), x) = ', df(f, {x:1, y:3}, 'x'))
 
-console.log('grad(f)=', grad(f, {x:1, y:2}))
+console.log('grad(f)=', grad(f, {x:1, y:3}))
