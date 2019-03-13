@@ -8,7 +8,8 @@ let y2 = net.mul(y, y)
 let o  = net.add(x2, y2)
 
 console.log('net.forward()=', net.forward())
-o.g = 1
+o.g = 0.1
+// o.g = 1
 
 console.log('net.backwward()')
 
