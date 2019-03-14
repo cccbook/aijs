@@ -51,7 +51,7 @@ $$\nabla_{x} f(x) = \left[ \frac{\partial }{\partial x_1} f(x), \frac{\partial }
 
 讓我們先回頭看看梯度中的基本元素，也就是偏微分，其定義是：
 
-$$\frac{\partial }{\partial x_1} f(x) = \lim_{h \to 0} \frac{f(x_1, ..., x_i+h, ...., x_n)-f(x_1, ..., x_i, ...., x_n)}{h}$$
+$$\frac{\partial }{\partial x_i} f(x) = \lim_{h \to 0} \frac{f(x_1, ..., x_i+h, ...., x_n)-f(x_1, ..., x_i, ...., x_n)}{h}$$
 
 舉例而言，假如對 $f(x,y) = x^2+y^2$  這個函數而言，其對 x 的偏微分就是：
 
