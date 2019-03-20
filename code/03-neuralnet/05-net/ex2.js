@@ -1,3 +1,4 @@
+// f(x,y) = (x-3)^2 + (y-2)^2
 const nn = require('./nn')
 const net = new nn.Net()
 

@@ -1,4 +1,4 @@
-const Node = require('./node')
+const N = require('./node')
 const Gate = require('./gate')
 
 module.exports = class Net {
@@ -8,11 +8,15 @@ module.exports = class Net {
   }
 
   variable (v, g) {
-    return new Node(v, g)
+    return new N.Variable(v, g)
+  }
+
+  constant (v) {
+    return new N.Constant(v)
   }
 
   op (x, y, f, gfx, gfy) {
-    let o = new Node()
+    let o = new N.Variable()
     let g = new Gate(o, x, y, f, gfx, gfy)
     this.gates.push(g)
     this.o = o
