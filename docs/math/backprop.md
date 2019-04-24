@@ -65,7 +65,9 @@ let gmul = new Gate(o, x, y, (x,y)=>x*y, (x,y)=>y, (x,y)=>x))
 
 對於 f(x,y) = xy 而言，假如 f 的梯度為 f.g ，那麼由於：
 
-$$\frac{\partial{f(x,y)}}{\partial{x}} = \frac{\partial{xy}}{\partial{x}} = y$$
+$$
+\frac{\partial{f(x,y)}}{\partial{x}} = \frac{\partial{xy}}{\partial{x}} = y
+$$
 
 因此 x 的梯度應該是 x.g = y * f.g。 
 
@@ -85,7 +87,9 @@ $$\frac{\partial{f(x,y)}}{\partial{x}} = \frac{\partial{xy}}{\partial{x}} = y$$
 
 根據偏微分的鏈鎖規則，我們可以用以下數學式描述 f, q, x 之間的梯度關係。
 
-$$\frac{\partial{f(q,z)}}{\partial{x}} = \frac{\partial{q(x,y)}}{\partial{x}} \frac{\partial{f(q,z)}}{\partial{q}}$$
+$$
+\frac{\partial{f(q,z)}}{\partial{x}} = \frac{\partial{q(x,y)}}{\partial{x}} \frac{\partial{f(q,z)}}{\partial{q}}
+$$
 
 
 由於 f 為輸出，我們可以先將 f 的梯度 f.g 設定為 1，那麼就可以推斷其他變數的梯度值。 
@@ -93,9 +97,13 @@ $$\frac{\partial{f(q,z)}}{\partial{x}} = \frac{\partial{q(x,y)}}{\partial{x}} \f
 (註：其實輸出 f.g 可以設為一的非零值，代表梯度下降的移動長度，對於有《樣本與標準答案》的學習，可以將 f.g 設為輸出與標準答案的差距)
 
 
-$$\frac{\partial{f(q,z)}}{\partial{q}} = \frac{\partial{qz}}{\partial{q}} =z$$
+$$
+\frac{\partial{f(q,z)}}{\partial{q}} = \frac{\partial{qz}}{\partial{q}} =z
+$$
 
-$$x.g = \frac{\partial{f(q,z)}}{\partial{x}} = \frac{\partial{f(q,z)}}{\partial{q}} \frac{\partial{q(x,y)}}{\partial{x}}=\frac{\partial{qz}}{\partial{q}} \frac{\partial{x+y}}{\partial{x}}=z*1$$
+$$
+x.g = \frac{\partial{f(q,z)}}{\partial{x}} = \frac{\partial{f(q,z)}}{\partial{q}} \frac{\partial{q(x,y)}}{\partial{x}}=\frac{\partial{qz}}{\partial{q}} \frac{\partial{x+y}}{\partial{x}}=z*1
+$$
 
 因此當 `f.g` 已知的時候，我們可以算出 `q.g` ，由於 `f = q*z` ，因此  q 的梯度 `q.g = z*f.g`  (當 f.g = 1 時，則 q.g = z)。
 

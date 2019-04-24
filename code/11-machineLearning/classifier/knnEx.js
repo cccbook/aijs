@@ -1,5 +1,4 @@
-var ai6 = require('../../source/ai6')
-var KNN = ai6.ML.KNN
+var KNN = require('./knn')
 var QA = [
   {Q: [0, 0], A: ['L']},
   {Q: [0, 1], A: ['L']},
@@ -14,8 +13,12 @@ var QA = [
 KNN.loadQA(QA)
 
 var distance = function (a, b) {
-  var dist = ai6.j6.euclidDistance(a, b)
-  return dist
+  let len = a.length, d = 0
+  for (let i=0; i<len; i++) {
+    let di = a[i]-b[i]
+    d += di * di
+  }
+  return d
 }
 
 var k = 3
