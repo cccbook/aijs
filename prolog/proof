@@ -1,0 +1,7 @@
+cat(tom).
+dog(snoopy).
+mouse(jerry).
+animal(X) :- cat(X).
+animal(X) :- mouse(X).
+animal(X) :- dog(X).
+
