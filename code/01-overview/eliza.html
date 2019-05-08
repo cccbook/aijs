@@ -2,7 +2,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 </head>
-<body onload="onRuleLoaded()">
+<body>
   <div>
    請輸入問題：
    <input id="say" name="say" type="text" value="" size="80" onkeydown="keyin(event)"/> <!-- 按 enter 時呼叫 keyin() 回答 --> 
@@ -54,7 +54,7 @@ var qaList = [
 { Q:"不曉得 | 不知道", A:"為何不知道?|在想想看，有沒有甚麼可能性?"},
 { Q:"不想 | 不希望", A:"有沒有甚麼辦法呢?|為何不想*呢?|那你希望怎樣呢?"}, 
 { Q:"想 | 希望", A:"為何想*呢?|真的想*?|那就去做阿?為何不呢?"},
-{ Q:"不", A:"為何不*?|所以你不*?"},
+{ Q:"不", A:"為何不*?|為甚麼不*?"},
 { Q:"請", A:"我該如何*呢?|你想要我*嗎?"},
 { Q:"你", A:"你真的是在說我嗎?|別說我了，談談你吧!|為何這麼關心我*?|不要再說我了，談談你吧!|你自己*"},
 { Q:"總是 | 常常", A:"能不能具體說明呢?|何時?"},
@@ -75,6 +75,7 @@ var qaList = [
     function say() { // 當送出鍵按下時，會呼叫這個函數進行回答動作
       append(document.getElementById("say").value); // 先將使用者輸入的問句放到「對話區」顯示。
       answer(); // 然後回答使用者的問題。
+      // document.getElementById("say").value = ''; // 清除問句
     }
 
     function keyin(event) { // 當按下 enter 鍵時，會呼叫此函數進行回答
@@ -91,6 +92,7 @@ var qaList = [
     function answer() { // 回答問題
       setTimeout(function () { // 停頓 1 到 3 秒再回答問題 (因為若回答太快就不像人了，人打字需要時間)
         append(">> "+getAnswer());
+        document.getElementById("say").value = ''
       }, 1000+random(2000));
     }
 
@@ -101,8 +103,8 @@ var qaList = [
         var qa = qaList[i];
         var qList = qa.Q.split("|"); // 取出 Q 部分，分割成一個一個的問題字串 q
         var aList = qa.A.split("|"); // 取出回答 A 部分，分割成一個一個的回答字串 q
-        for (var qi in qList) { // 對於每個問題字串 q
-          var q = qList[qi].trim();
+        for (var q of qList) { // 對於每個問題字串 q
+          var q = q.trim();
           if (q=="") // 如果是最後一個「空字串」的話，那就不用比對，直接任選一個回答。
             return aList[random(aList.length)]; // 那就從答案中任選一個回答
           var r = new RegExp("(.*)"+q+"([^?.;]*)", "gi"); // 建立正規表達式 (.*) q ([^?.;]*)
