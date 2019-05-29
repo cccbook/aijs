@@ -37,7 +37,7 @@ function next(tag) {
     wi++;
     return w;
   } else {
-    console.log('\n==> 錯誤: ' + w + ' 的詞性為 '+wtag+' 不等於 ' + tag);
+    console.log('\n==> 錯誤: ' + w + ' 詞性為 '+ wtag +' 不等於 ' + tag);
     throw Error("Error !");    
   }
 }
@@ -78,6 +78,8 @@ function VP() {
 function NP() {
   while (isTag("n")) next("n");
   do { next("N") } while (isTag("N"));
+  // while (isTag("n")) next("n");
+
   if (isTag("c")) {
     next("c");
     NP();

@@ -33,7 +33,7 @@ function revTagMap(tagMap) {
       rTagMap[w] = tag
     }
   }
-  // console.log('rTagMap=', rTagMap)
+  console.log('rTagMap=', rTagMap)
   return rTagMap
 }
 
